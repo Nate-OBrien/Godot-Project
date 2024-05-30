@@ -1,0 +1,61 @@
+[gd_scene load_steps=6 format=3 uid="uid://boopculrnittt"]
+
+[ext_resource type="Script" path="res://movement.gd" id="1_0g5im"]
+[ext_resource type="Texture2D" uid="uid://def0udsqo1ben" path="res://images/pxArt-removebg-preview.png" id="1_msbh4"]
+[ext_resource type="Script" path="res://Button.gd" id="3_3bvb7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w57dj"]
+size = Vector2(149, 171)
+
+[sub_resource type="GDScript" id="GDScript_4k2bm"]
+script/source = "extends Label
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+
+
+
+
+func _on_button_pressed():
+	$\"../Label\".text = \"IT WORKS!\"
+"
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Sprite" type="CharacterBody2D" parent="."]
+position = Vector2(38, 227)
+script = ExtResource("1_0g5im")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Sprite"]
+position = Vector2(499, 1)
+texture = ExtResource("1_msbh4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite"]
+position = Vector2(498.5, 13.5)
+shape = SubResource("RectangleShape2D_w57dj")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 344.0
+offset_top = 113.0
+offset_right = 645.0
+offset_bottom = 136.0
+text = "Nate"
+script = SubResource("GDScript_4k2bm")
+
+[node name="Button" type="Button" parent="."]
+offset_left = 185.0
+offset_top = 54.0
+offset_right = 275.0
+offset_bottom = 107.0
+text = "Click me!"
+script = ExtResource("3_3bvb7")
+
+[connection signal="pressed" from="Button" to="Label" method="_on_button_pressed"]
